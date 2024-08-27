@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página em branco</title>
+    <style>
+      body {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(blue, white);
+        background-size: contain;
+        background-repeat: no-repeat;
+        font-family: Arial, Helvetica, sans-serif;
+        flex-direction: column;
+      }
+      .container {
+        background-color: white;
+        padding: 0px 10px 50px 10px;
+        text-align: center;
+        border-radius: 10px;
+      }
+      h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        background: white;
+        padding: 10px;
+        border-radius: 20px;
+        font-size: 25px;
+      }
+
+      button {
+        padding: 10px;
+        color: black;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      .container-products {
+        display: none;
+        background-color: white;
+        margin-top: 20px;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .container-fechar {
+        text-align: right;
+      }
+
+      .container-fechar p {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .container-products label {
+        font-size: 15px;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      .container-info {
+        display: flex;
+        padding: 5px;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgba(0, 0, 0, 0.241);
+      }
+
+      input {
+        padding: 5px;
+        width: 100% auto;
+        margin-bottom: 10px;
+      }
+
+      button {
+        color: white;
+        background-color: rgb(83, 83, 252);
+        margin-top: 10px;
+        width: 100px;
+        border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <h1>Cadastro de produto</h1>
+      <div class="container-cadastro">
+        <div class="container-interacoes">
+          <div>
+            <button onclick="cadastrarProduto()">Cadastrar produto</button>
+            <button onclick="listarProdutos()">Listar produtos</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  container de produtos  -->
+
+    <div class="container-products" id="container-products">
+      <div class="container-fechar">
+        <p onclick="fecharcontainer()">X</p>
+      </div>
+      <div class="container-info">
+        <label> Nome </label>
+        <input id="nome" type="text" placeholder="Nome do produto" required/><br />
+      </div>
+
+      <div class="container-info">
+        <label> Descrição </label>
+        <input
+          id="descricao"
+          type="text"
+          placeholder="Descrição..."
+          required
+        /><br />
+      </div>
+
+      <div class="container-info">
+        <label> Preço</label>
+        <input
+          id="preco"
+          type="text"
+          placeholder="Preço do produto"
+          required
+        /><br />
+      </div>
+
+      <div class="container-info">
+        <label>Peso</label>
+        <input
+          id="peso"
+          type="text"
+          placeholder="Peso do produto"
+          required
+        /><br />
+      </div>
+      <button onclick="enviarCadastro()" class="btn-envio">Enviar</button>
+    </div>
+
+    <script>
+      function cadastrarProduto() {
+        let container = document.getElementById("container");
+        container.style.display = "none";
+
+        let exibirContainer = document.getElementById("container-products");
+        exibirContainer.style.display = "block";
+      }
+
+      function fecharcontainer() {
+        let fecharContainer = document.getElementById("container-products");
+        let container = document.getElementById("container");
+        container.style.display = "block";
+        fecharContainer.style.display = "none";
+      }
+      function enviarCadastro() {
+        const nome = document.getElementById("nome").value;
+        const descricao = document.getElementById("descricao").value;
+        const preco = document.getElementById("preco").value;
+        const peso = document.getElementById("peso").value;
+
+        fetch('http://localhost:8090/api/products',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: nome,
+            description: descricao,
+            price: preco,
+            weight: peso,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert('Produto cadastrado com sucesso');
+          fecharcontainer();
+        })
+        .catch((error) => {
+          console.error('Error', error);
+          alert('Erro ao cadastrar produto');
+        })
+      }
+    </script>
+  </body>
+</html>
