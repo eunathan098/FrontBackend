@@ -162,33 +162,33 @@
         container.style.display = "block";
         fecharContainer.style.display = "none";
       }
-      function enviarCadastro() {
+      async function enviarCadastro() {
         const nome = document.getElementById("nome").value;
         const descricao = document.getElementById("descricao").value;
         const preco = document.getElementById("preco").value;
         const peso = document.getElementById("peso").value;
 
-        fetch('http://localhost:8090/api/products',{
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: nome,
-            description: descricao,
-            price: preco,
-            weight: peso,
-          }),
-        })
-        .then(response => response.json())
-        .then(data => {
-          alert('Produto cadastrado com sucesso');
-          fecharcontainer();
-        })
-        .catch((error) => {
-          console.error('Error', error);
-          alert('Erro ao cadastrar produto');
-        })
+        const produto = { name: nome, description: descricao, price: preco, weight: peso };
+
+        try {
+          const response = await fetch('http://localhost:8090/api/products', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(produto)
+          });
+
+          if (response.ok) {
+            alert("Produto cadastrado com sucesso!");
+            fecharcontainer();
+          } else {
+            alert("Erro ao cadastrar o produto!");
+          }
+        } catch (error) {
+          console.error("Erro ao cadastrar produto:", error);
+          alert("Erro ao cadastrar o produto!");
+        }
       }
     </script>
   </body>
