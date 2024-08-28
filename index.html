@@ -37,6 +37,7 @@
         color: black;
         background-color: white;
         cursor: pointer;
+        border-radius: 10px;
       }
 
       .container-products {
@@ -44,7 +45,7 @@
         background-color: white;
         margin-top: 20px;
         flex-direction: column;
-        padding: 20px;
+        padding: 0px 15px 10px 15px;
         border-radius: 10px;
       }
 
@@ -58,6 +59,7 @@
       }
 
       .container-products label {
+        color: white;
         font-size: 15px;
         font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
           "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -65,22 +67,32 @@
 
       .container-info {
         display: flex;
-        padding: 5px;
+        padding-left: 5px;
+        margin-bottom: 10px;
         text-align: center;
         align-items: center;
         justify-content: space-between;
         border: 1px solid rgba(0, 0, 0, 0.241);
+        background-color: rgb(147, 147, 246);
+
+      }
+
+      .container-img{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: space-around;
       }
 
       input {
         padding: 5px;
         width: 100% auto;
-        margin-bottom: 10px;
+        outline: none;
       }
 
       button {
         color: white;
-        background-color: rgb(83, 83, 252);
+        background-color: rgb(147, 147, 246);
         margin-top: 10px;
         width: 100px;
         border: 0;
@@ -94,6 +106,11 @@
   <body>
     <div class="container" id="container">
       <h1>Cadastro de produto</h1>
+      <div class="container-img">
+        <img src="./public/imagens/adicionar-produto.png" alt="" height="50px">
+        <img src="./public/imagens/lista-de-desejos.png" alt="" height="35px">
+      </div>
+
       <div class="container-cadastro">
         <div class="container-interacoes">
           <div>
@@ -117,32 +134,17 @@
 
       <div class="container-info">
         <label> Descrição </label>
-        <input
-          id="descricao"
-          type="text"
-          placeholder="Descrição..."
-          required
-        /><br />
+        <input id="descricao" type="text" placeholder="Descrição..." required /><br />
       </div>
 
       <div class="container-info">
         <label> Preço</label>
-        <input
-          id="preco"
-          type="number"
-          placeholder="Preço do produto"
-          required
-        /><br />
+        <input id="preco" type="number" placeholder="Preço do produto" required /><br />
       </div>
 
       <div class="container-info">
         <label>Peso</label>
-        <input
-          id="peso"
-          type="number"
-          placeholder="Peso do produto"
-          required
-        /><br />
+        <input id="peso" type="number" placeholder="Peso do produto" required /><br />
       </div>
       <button onclick="enviarCadastro()" class="btn-envio">Enviar</button>
     </div>
@@ -151,6 +153,7 @@
       function cadastrarProduto() {
         let container = document.getElementById("container");
         container.style.display = "none";
+
 
         let exibirContainer = document.getElementById("container-products");
         exibirContainer.style.display = "block";
