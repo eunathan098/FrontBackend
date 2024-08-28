@@ -159,7 +159,7 @@
       </div>
     </div>
 
-    <!-- Container de cadastro do produto -->
+    <!-- Container do cadastro do produto -->
     <div class="container-products" id="container-products">
       <div class="container-fechar">
         <p onclick="fecharcontainer()">X</p>
@@ -187,38 +187,38 @@
       <button onclick="enviarCadastro()" class="btn-envio">Enviar</button>
     </div>
 
-    <!-- Container "Listar Produtos" -->
+    <!-- Container "Listar Produtos" display:none-->
     <div class="container-lista-products" >
       <div class="container-lista-produtos" id="container-lista-produtos">
           <div class="container-icones">
             <p> PRODUTO </p>
               <div>
-                <img src="./public/imagens/editar.png" alt="" height="35px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
               </div>
           </div>
 
           <div class="container-icones">
             <p> PRODUTO </p>
               <div>
-                <img src="./public/imagens/editar.png" alt="" height="35px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
               </div>
           </div>
 
           <div class="container-icones">
             <p> PRODUTO </p>
               <div>
-                <img src="./public/imagens/editar.png" alt="" height="35px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
               </div>
           </div>
 
           <div class="container-icones">
             <p> PRODUTO </p>
               <div>
-                <img src="./public/imagens/editar.png" alt="" height="35px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
               </div>
           </div>
       </div>
@@ -238,12 +238,13 @@
       }
 
       function editarProduto(id) {
-        alert(`Editar produto com ID: ${id}`);
+
       }
 
       function excluirProduto(id) {
 
       }
+    
 
       async function enviarCadastro() {
         const nome = document.getElementById("nome").value;
