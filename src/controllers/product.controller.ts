@@ -4,7 +4,7 @@ import { ProductRepository } from '@/repositories/product.repository'
 import { CreateProductDTO, UpdateProductDTO } from '@/dto/product.dto'
 import { Product } from '@/entities/product.entity'
 
-class ProductController {
+export class ProductController {
    private productRepository: ProductRepository
   ProductRepository: any
 
@@ -20,7 +20,7 @@ class ProductController {
     })
   }
 
-        //  Esta função esta definida para que pelo corpo da requisição criar registros de (name, description, weight);
+        //  Esta função esta definida para possa pelo corpo da requisição criar registros de (name, description, price e weight)
   create = async (request: Request, response: Response): Promise<Response> => {
     const {name, description, weight, price} = request.body
 
@@ -30,7 +30,7 @@ class ProductController {
     createProductDTO.weight = weight
     createProductDTO.price = price
 
-          //  Validando dados enviados na requisição!
+          //  Validando os dados enviados na requisição!
     const errors = await validate(createProductDTO)
     if (errors.length > 0) {
       return response.status(422).send({
@@ -111,12 +111,4 @@ class ProductController {
     }
   }
 }
-//   async updatePartial(request: Request, respnse: Response): Promise<Response>{
-//     const id: string = request.params.id;
-//     const updates: Partial<Product> = request.body;
-
-//     console.log("Teste de funcionamento")
-
-//   }
-// }
 export default new ProductController

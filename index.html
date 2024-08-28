@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./output.css" rel="stylesheet">
     <title>Página em branco</title>
     <style>
       body {
@@ -116,6 +118,32 @@
         transition: 1s;
       }
 
+      .btn-envio{
+        padding: 5px;
+        color: white;
+        background-color: rgb(147, 147, 246);
+      }
+
+      .container-pesquisa-produto{
+        display: flex;
+        width: 200px;
+        text-align: center;
+        background-color: rgb(147, 147, 246);
+        margin-top: 10px;
+      }
+      .pesquisar-produto {
+      padding: 5px;
+      width: 100%;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 2px solid #d1d5db;
+    }
+    .pesquisar-produto:focus {
+      border-bottom-color: #3b82f6;
+      outline: none;
+    }
+
       .container-lista-produtos {
         display: none;
         margin-top: 10px;
@@ -138,29 +166,47 @@
         margin-left: 10px;
         cursor: pointer;
       }
+
+      .teste{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        margin-top: 10px;
+
+      }
     </style>
   </head>
   <body>
     <!-- Container Principal "Cadastro de produtos" -->
-    <div class="container" id="container">
-      <h1>Cadastro de produto</h1>
-      <div class="container-img">
-        <img src="./public/imagens/adicionar-produto.png" alt="" height="50px">
-        <img src="./public/imagens/lista-de-desejos.png" alt="" height="35px">
+    <div class="w-fit container" id="container">
+      <h1 class="font-semibold text-xl">Cadastro de produto</h1>
+      <div class="container-img mb-7">
+        <img class="w-14" src="./imagens/adicionar-produto.png" alt="" height="50px">
+        <img  class="w-14" src="./imagens/lista-de-desejos.png" alt="" height="30px">
       </div>
 
-      <div class="container-cadastro">
+      <div class="container-cadastro w-fit">
         <div class="container-interacoes">
           <div>
-            <button onclick="cadastrarProduto()">Cadastrar produto</button>
-            <button onclick="listarProdutos()">Listar produtos</button>
+            <button class="bg-[#60a5fa] text-[#f8fafc]" onclick="cadastrarProduto()">Cadastrar produto</button>
+            <button class="bg-[#60a5fa]  text-[#f8fafc]" onclick="listarProdutos()">Listar produtos</button><br>
+            <div class="teste">
+
+              <div class="container-pesquisa-produto">
+                <a>
+                  <img class="w-12" src="./imagens/search.png" alt="" onclick="buscarporID()">
+                </a>
+                <input class="pesquisar-produto" type="number" placeholder="Pesquise pelo produto...">
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
 
     <!-- Container do cadastro do produto -->
-    <div class="container-products" id="container-products">
+    <div class="container-products " id="container-products">
       <div class="container-fechar">
         <p onclick="fecharcontainer()">X</p>
       </div>
@@ -188,39 +234,35 @@
     </div>
 
     <!-- Container "Listar Produtos" display:none-->
-    <div class="container-lista-products" >
-      <div class="container-lista-produtos" id="container-lista-produtos">
-          <div class="container-icones">
-            <p> PRODUTO </p>
-              <div>
-                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
-              </div>
-          </div>
+    <div id="container-lista-produtos" class="  hidden w-fit" >
+      <div id="container-lista-produtos">
+        <table class="min-w-full divide-y divide-gray-200 my-5">
+          <thead class="bg-blue-400">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Peso</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">editar</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">excluir</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">Produto</td>
+              <td class="px-6 py-4 whitespace-nowrap">Descrição</td>
+              <td class="px-6 py-4 whitespace-nowrap">$10.00</td>
+              <td class="px-6 py-4 whitespace-nowrap">1kg</td>
 
-          <div class="container-icones">
-            <p> PRODUTO </p>
-              <div>
-                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
-              </div>
-          </div>
-
-          <div class="container-icones">
-            <p> PRODUTO </p>
-              <div>
-                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
-              </div>
-          </div>
-
-          <div class="container-icones">
-            <p> PRODUTO </p>
-              <div>
-                <img src="./public/imagens/editar.png" alt="Editar registro" height="25px">
-                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="Excluir registro" height="25px">
-              </div>
-          </div>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <img src="./imagens/editar.png" alt="Editar" class="w-6 h-6">
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <img src="./imagens/lixeira-de-reciclagem.png" alt="Excluir" class="w-6 h-6">
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -237,14 +279,49 @@
         document.getElementById("container").style.display = "block";
       }
 
-      function editarProduto(id) {
+      async function listarProdutos() {
+        const containerListaProdutos = document.getElementById("container-lista-produtos");
+        containerListaProdutos.style.display = "block"
 
       }
+
+        async function buscarporID(id) {
+        try {
+               const response = await fetch(`/api/products/${id}`, {
+               method: 'GET',
+              headers: {
+              'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Produto não encontrado');
+    }
+
+    const produto = await response.json();
+    console.log(produto);
+
+    // Aqui você pode manipular o DOM para exibir os dados do produto
+    // Por exemplo, preencher campos em um formulário ou exibir em um modal
+    document.getElementById('nomeProduto').innerText = produto.name;
+    document.getElementById('descricaoProduto').innerText = produto.description;
+    // E assim por diante...
+
+  } catch (error) {
+    console.error('Erro ao buscar produto:', error);
+    // Aqui você pode exibir uma mensagem de erro na interface
+    alert('Erro ao buscar produto: ' + error.message);
+  }
+}
+
+buscarProdutoPorId(1); // Substitua pelo ID do produto que deseja buscar
+
+
 
       function excluirProduto(id) {
 
       }
-    
+
 
       async function enviarCadastro() {
         const nome = document.getElementById("nome").value;
@@ -274,12 +351,6 @@
           alert("Erro ao cadastrar o produto!");
         }
       }
-      function listarProdutos(){
-          let exibirlistaProdutos = document.getElementById("container-lista-produtos")
-          exibirlistaProdutos.style.display = "block"
-
-
-        }
     </script>
   </body>
 </html>
