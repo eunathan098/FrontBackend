@@ -18,12 +18,14 @@
         font-family: Arial, Helvetica, sans-serif;
         flex-direction: column;
       }
+
       .container {
         background-color: white;
         padding: 0px 10px 50px 10px;
         text-align: center;
         border-radius: 10px;
       }
+
       h1 {
         font-family: Arial, Helvetica, sans-serif;
         background: white;
@@ -61,12 +63,12 @@
       .container-products label {
         color: white;
         font-size: 15px;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       }
 
       .container-info {
         display: flex;
+        width: 100%;
         padding-left: 5px;
         margin-bottom: 10px;
         text-align: center;
@@ -74,20 +76,28 @@
         justify-content: space-between;
         border: 1px solid rgba(0, 0, 0, 0.241);
         background-color: rgb(147, 147, 246);
-
+        box-sizing: border-box;
       }
 
-      .container-img{
+      .container-info label {
+        flex: 1;
+        text-align: right;
+        padding-right: 10px;
+      }
+
+      .container-info input {
+        flex: 2;
+        padding: 5px;
+        width: 100%;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      .container-img {
         display: flex;
         text-align: center;
         align-items: center;
         justify-content: space-around;
-      }
-
-      input {
-        padding: 5px;
-        width: 100% auto;
-        outline: none;
       }
 
       button {
@@ -98,12 +108,40 @@
         border: 0;
         cursor: pointer;
         font-weight: bold;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      button:hover {
+        background-color: rgba(46, 46, 243, 0.606);
+        transition: 1s;
+      }
+
+      .container-lista-produtos {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        width: 350px;
+        background-color: white;
+      }
+
+      .container-icones {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid rgba(0, 0, 0, 0.361);
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+
+      .container-icones img {
+        margin-left: 10px;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
+    <!-- Container Principal "Cadastro de produtos" -->
     <div class="container" id="container">
       <h1>Cadastro de produto</h1>
       <div class="container-img">
@@ -121,15 +159,14 @@
       </div>
     </div>
 
-    <!--  container de produtos  -->
-
+    <!-- Container de cadastro do produto -->
     <div class="container-products" id="container-products">
       <div class="container-fechar">
         <p onclick="fecharcontainer()">X</p>
       </div>
       <div class="container-info">
         <label> Nome </label>
-        <input id="nome" type="text" placeholder="Nome do produto" required/><br />
+        <input id="nome" type="text" placeholder="Nome do produto" required /><br />
       </div>
 
       <div class="container-info">
@@ -138,33 +175,76 @@
       </div>
 
       <div class="container-info">
-        <label> Preço</label>
+        <label> Preço </label>
         <input id="preco" type="number" placeholder="Preço do produto" required /><br />
       </div>
 
       <div class="container-info">
-        <label>Peso</label>
+        <label> Peso </label>
         <input id="peso" type="number" placeholder="Peso do produto" required /><br />
       </div>
+
       <button onclick="enviarCadastro()" class="btn-envio">Enviar</button>
+    </div>
+
+    <!-- Container "Listar Produtos" -->
+    <div class="container-lista-products" >
+      <div class="container-lista-produtos" id="container-lista-produtos">
+          <div class="container-icones">
+            <p> PRODUTO </p>
+              <div>
+                <img src="./public/imagens/editar.png" alt="" height="35px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+              </div>
+          </div>
+
+          <div class="container-icones">
+            <p> PRODUTO </p>
+              <div>
+                <img src="./public/imagens/editar.png" alt="" height="35px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+              </div>
+          </div>
+
+          <div class="container-icones">
+            <p> PRODUTO </p>
+              <div>
+                <img src="./public/imagens/editar.png" alt="" height="35px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+              </div>
+          </div>
+
+          <div class="container-icones">
+            <p> PRODUTO </p>
+              <div>
+                <img src="./public/imagens/editar.png" alt="" height="35px">
+                <img src="./public/imagens/lixeira-de-reciclagem.png" alt="" height="35px">
+              </div>
+          </div>
+      </div>
     </div>
 
     <script>
       function cadastrarProduto() {
-        let container = document.getElementById("container");
-        container.style.display = "none";
-
-
-        let exibirContainer = document.getElementById("container-products");
-        exibirContainer.style.display = "block";
+        document.getElementById("container").style.display = "none";
+        document.getElementById("container-products").style.display = "block";
+        document.getElementById("container-lista-produtos").style.display = "none";
       }
 
       function fecharcontainer() {
-        let fecharContainer = document.getElementById("container-products");
-        let container = document.getElementById("container");
-        container.style.display = "block";
-        fecharContainer.style.display = "none";
+        document.getElementById("container-products").style.display = "none";
+        document.getElementById("container-lista-produtos").style.display = "none";
+        document.getElementById("container").style.display = "block";
       }
+
+      function editarProduto(id) {
+        alert(`Editar produto com ID: ${id}`);
+      }
+
+      function excluirProduto(id) {
+
+      }
+
       async function enviarCadastro() {
         const nome = document.getElementById("nome").value;
         const descricao = document.getElementById("descricao").value;
@@ -193,6 +273,12 @@
           alert("Erro ao cadastrar o produto!");
         }
       }
+      function listarProdutos(){
+          let exibirlistaProdutos = document.getElementById("container-lista-produtos")
+          exibirlistaProdutos.style.display = "block"
+
+
+        }
     </script>
   </body>
 </html>
